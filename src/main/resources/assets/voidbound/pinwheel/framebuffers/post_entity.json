@@ -1,0 +1,21 @@
+{
+  "width": "q.screen_width",
+  "height": "q.screen_height",
+  "autoClear": false,
+  "color_buffers": [
+    {
+      "type": "texture",
+      "format": "R8",
+      "levels": 0,
+      "linear": false,
+      "name": "_"
+    }
+  ],
+  "depth": {
+    "type": "texture",
+    "format": "DEPTH_COMPONENT",
+    "levels": 1,
+    "linear": true,
+    "name": "PostEntityDepthBuffer"
+  }
+}

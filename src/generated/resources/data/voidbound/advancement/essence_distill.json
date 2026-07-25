@@ -1,0 +1,27 @@
+{
+  "parent": "voidbound:drill_bedrock",
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:essence_distill"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.voidbound.essence_distill.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "voidbound:purification_crystal"
+    },
+    "title": {
+      "translate": "advancement.voidbound.essence_distill.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "create:brass_casing"
+    },
+    "M": {
+      "item": "create:mechanical_drill"
+    }
+  },
+  "pattern": [
+    " B ",
+    "BMB",
+    " B "
+  ],
+  "result": {
+    "count": 1,
+    "id": "voidbound:brass_drill"
+  }
+}

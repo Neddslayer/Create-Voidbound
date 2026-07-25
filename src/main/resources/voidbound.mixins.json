@@ -1,0 +1,25 @@
+{
+  "required": true,
+  "package": "dev.neddslayer.voidbound.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BottleItemMixin",
+    "FluidDrainingBehaviourMixin",
+    "FluidNetworkMixin",
+    "FluidRenderHelperMixin",
+    "HosePulleyBlockEntityMixin",
+    "LevelEntityAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "client": [
+    "FluidRendererMixin",
+    "GuiGraphicsMixin",
+    "ItemRendererMixin",
+    "LevelRendererMixin"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "parent": "voidbound:essence_distill",
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:destroy_anchor"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.voidbound.destroy_anchor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "voidbound:void_catalyst_anchor"
+    },
+    "title": {
+      "translate": "advancement.voidbound.destroy_anchor.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

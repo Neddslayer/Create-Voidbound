@@ -1,0 +1,10 @@
+{
+  "vertex": "voidbound:void_essence",
+  "fragment": "voidbound:raw_void_essence",
+  "textures": {
+    "PostEntityDepthBuffer": {
+      "type": "framebuffer",
+      "name": "voidbound:post_entity:depth"
+    }
+  }
+}

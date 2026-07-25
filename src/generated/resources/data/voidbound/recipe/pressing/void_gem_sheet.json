@@ -1,0 +1,13 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "item": "voidbound:void_gem"
+    }
+  ],
+  "results": [
+    {
+      "id": "voidbound:void_gem_sheet"
+    }
+  ]
+}

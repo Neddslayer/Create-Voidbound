@@ -1,0 +1,26 @@
+{
+  "parent": "voidbound:root",
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:drill_bedrock"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.voidbound.drill_bedrock.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "voidbound:drilled_bedrock"
+    },
+    "title": {
+      "translate": "advancement.voidbound.drill_bedrock.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

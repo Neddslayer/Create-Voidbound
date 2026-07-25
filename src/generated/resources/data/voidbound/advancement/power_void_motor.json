@@ -1,0 +1,27 @@
+{
+  "parent": "voidbound:essence_distill",
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:power_void_motor"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.voidbound.power_void_motor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "voidbound:void_motor"
+    },
+    "title": {
+      "translate": "advancement.voidbound.power_void_motor.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

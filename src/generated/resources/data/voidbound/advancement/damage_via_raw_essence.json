@@ -1,0 +1,27 @@
+{
+  "parent": "voidbound:drill_bedrock",
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:damage_via_raw_essence"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.voidbound.damage_via_raw_essence.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "create:encased_fan"
+    },
+    "title": {
+      "translate": "advancement.voidbound.damage_via_raw_essence.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

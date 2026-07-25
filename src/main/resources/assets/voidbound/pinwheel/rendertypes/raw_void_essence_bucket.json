@@ -1,0 +1,28 @@
+{
+  "format": "BLOCK",
+  "mode": "QUADS",
+  "bufferSize": "TRANSIENT",
+  "sort": true,
+  "affectsCrumbling": true,
+  "outline": true,
+  "layers": [
+    {
+      "type": "veil:shader",
+      "name": "voidbound:raw_void_essence_bucket"
+    },
+    {
+      "type": "minecraft:transparency",
+      "mode": "translucent"
+    },
+    {
+      "type": "minecraft:lightmap",
+      "enabled": true
+    },
+    {
+      "type": "minecraft:overlay"
+    },
+    {
+      "type": "minecraft:write_mask"
+    }
+  ]
+}

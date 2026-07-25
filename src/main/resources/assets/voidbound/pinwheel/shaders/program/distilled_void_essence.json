@@ -1,0 +1,12 @@
+{
+  "vertex": "voidbound:void_essence",
+  "fragment": "voidbound:distilled_void_essence",
+  "textures": {
+    "PostEntityDepthBuffer": {
+      "type": "framebuffer",
+      "name": "voidbound:post_entity:depth"
+    },
+    "AlbedoSampler": "veil:dynamic_buffer/albedo",
+    "NormalSampler": "veil:dynamic_buffer/normal"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "item": "voidbound:void_gem"
+    },
+    {
+      "item": "voidbound:void_gem"
+    },
+    {
+      "item": "create:polished_rose_quartz"
+    },
+    {
+      "item": "create:polished_rose_quartz"
+    },
+    {
+      "type": "neoforge:single",
+      "amount": 1000,
+      "fluid": "voidbound:distilled_void_essence"
+    }
+  ],
+  "processing_time": 100,
+  "results": [
+    {
+      "id": "voidbound:void_catalyst"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "create:fluid_tank"
+    },
+    "S": {
+      "item": "create:shaft"
+    },
+    "V": {
+      "item": "voidbound:void_gem_sheet"
+    }
+  },
+  "pattern": [
+    "FVF",
+    "VSV",
+    "FVF"
+  ],
+  "result": {
+    "count": 1,
+    "id": "voidbound:void_motor"
+  }
+}

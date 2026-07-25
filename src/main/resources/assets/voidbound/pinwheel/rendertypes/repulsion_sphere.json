@@ -1,0 +1,31 @@
+{
+  "format": "BLOCK",
+  "mode": "TRIANGLES",
+  "bufferSize": "TRANSIENT",
+  "sort": true,
+  "affectsCrumbling": true,
+  "outline": false,
+  "layers": [
+    {
+      "type": "veil:shader",
+      "name": "voidbound:repulsion_sphere"
+    },
+    {
+      "type": "minecraft:lightmap",
+      "enabled": true
+    },
+    {
+      "type": "minecraft:transparency",
+      "mode": "translucent"
+    },
+    {
+      "type": "minecraft:layering",
+      "mode": "view_offset"
+    },
+    {
+      "type": "minecraft:write_mask",
+      "color": true,
+      "depth": false
+    }
+  ]
+}

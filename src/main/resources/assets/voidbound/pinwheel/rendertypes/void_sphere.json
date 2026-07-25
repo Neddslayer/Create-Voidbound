@@ -1,0 +1,56 @@
+{
+  "format": "BLOCK",
+  "mode": "TRIANGLES",
+  "bufferSize": "TRANSIENT",
+  "sort": true,
+  "affectsCrumbling": true,
+  "outline": false,
+  "layers": [
+    [
+      {
+        "type": "veil:shader",
+        "name": "voidbound:void_sphere_bloom"
+      },
+      {
+        "type": "minecraft:write_mask",
+        "color": true,
+        "depth": false
+      },
+      {
+        "type": "minecraft:cull",
+        "face": "none"
+      },
+      {
+        "type": "minecraft:output",
+        "framebuffer": "veil:bloom"
+      }
+    ],
+    [
+      {
+        "type": "veil:shader",
+        "name": "voidbound:void_sphere"
+      },
+      {
+        "type": "minecraft:lightmap",
+        "enabled": true
+      },
+      {
+        "type": "minecraft:transparency",
+        "mode": "translucent"
+      },
+      {
+        "type": "minecraft:cull",
+        "face": "none"
+      },
+      {
+        "type": "minecraft:layering",
+        "mode": "view_offset"
+      },
+      {
+        "type": "minecraft:write_mask",
+        "color": true,
+        "depth": false
+      }
+    ]
+  ]
+}

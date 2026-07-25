@@ -1,0 +1,7 @@
+{
+  "vertex": "voidbound:item_entity_translucent_cull",
+  "fragment": "voidbound:raw_void_essence_bucket",
+  "textures": {
+    "BlockAtlas": "minecraft:textures/atlas/blocks.png"
+  }
+}

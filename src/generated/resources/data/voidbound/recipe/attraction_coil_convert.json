@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "voidbound:distilled_void_essence_bottle"
+    },
+    {
+      "item": "voidbound:repulsion_coil"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "voidbound:attraction_coil"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "catalyst_implode": {
+    "sounds": [
+      {
+        "attenuation_distance": 32,
+        "name": "voidbound:catalyst_implode",
+        "volume": 2.0
+      }
+    ],
+    "subtitle": "sound.voidbound.catalyst_implode"
+  },
+  "purify": {
+    "sounds": [
+      {
+        "name": "voidbound:purify",
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "sound.voidbound.purify"
+  }
+}

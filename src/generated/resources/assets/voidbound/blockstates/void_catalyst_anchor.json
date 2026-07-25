@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "voidbound:block/void_catalyst_anchor/block"
+    }
+  }
+}
