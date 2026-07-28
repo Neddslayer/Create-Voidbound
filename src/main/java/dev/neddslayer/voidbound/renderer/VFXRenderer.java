@@ -128,7 +128,7 @@ public class VFXRenderer {
             float radius = (float) easeInOutQuint(x) * 6;
             float innerRadius = -24 * x *x + 24 * x;
 
-            VeilRenderSystem.renderer().getShaderManager().getShader(VoidboundClient.VOID_SPHERE).getUniformSafe("bloom").setFloat((float) Config.BLOOM.getAsDouble());
+            VeilRenderSystem.renderer().getShaderManager().getShader(VoidboundClient.VOID_SPHERE_BLOOM).getUniformSafe("bloom").setFloat((float) Config.BLOOM.getAsDouble());
 
             VertexConsumer consumer = buffer.getBuffer(VeilRenderType.get(VoidboundClient.VOID_SPHERE));
 

@@ -27,9 +27,7 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
 import static org.lwjgl.opengl.GL11C.*;
 
-// This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = Voidbound.MODID, dist = Dist.CLIENT)
-// You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
 @EventBusSubscriber(modid = Voidbound.MODID, value = Dist.CLIENT)
 public class VoidboundClient {
     public static final ResourceLocation VOID_FLUID_DEPTH_FBO = Voidbound.path("post_entity");
@@ -43,6 +41,7 @@ public class VoidboundClient {
 
     public static final ResourceLocation REPULSION_SPHERE = Voidbound.path("repulsion_sphere");
     public static final ResourceLocation VOID_SPHERE = Voidbound.path("void_sphere");
+    public static final ResourceLocation VOID_SPHERE_BLOOM = Voidbound.path("void_sphere_bloom");
 
     public VoidboundClient(ModContainer container) {
         // Allows NeoForge to create a config screen for this mod's configs.

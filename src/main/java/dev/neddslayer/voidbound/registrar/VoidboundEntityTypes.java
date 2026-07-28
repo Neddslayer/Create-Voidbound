@@ -30,7 +30,7 @@ public class VoidboundEntityTypes {
 
     public static final EntityEntry<VoidCatalystEntity> VOID_CATALYST_ENTITY = REGISTRATE
             .<VoidCatalystEntity>entity("void_catalyst", VoidCatalystEntity::new, MobCategory.MISC)
-            .properties(p -> p.sized(0.4f, 0.4f).clientTrackingRange(4).updateInterval(10))
+            .properties(p -> p.sized(1f, 1f).clientTrackingRange(4).updateInterval(10))
             .renderer(() -> VoidCatalystRenderer::new)
             .register();
 

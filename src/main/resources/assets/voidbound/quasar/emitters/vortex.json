@@ -1,0 +1,107 @@
+{
+  "count": 4,
+  "emitter_settings": {
+    "shape": {
+      "shape": "veil:sphere",
+      "dimensions": [
+        0.1,
+        0.1,
+        0.1
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "from_surface": false
+    },
+    "particle_settings": {
+      "random_size": true,
+      "random_initial_direction": true,
+      "initial_rotation": [
+        180.0,
+        180.0,
+        180.0
+      ],
+      "random_initial_rotation": true,
+      "particle_lifetime": 60,
+      "particle_speed": 0.1,
+      "base_particle_size": 0.05,
+      "particle_size_variation": 0.05
+    }
+  },
+  "particle_data": {
+    "modules": [
+      {
+        "strength": 4.1,
+        "strengthByDistance": true,
+        "invertDistanceModifier": true,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "localPosition": true,
+        "range": 20.0,
+        "module": "veil:point_attractor"
+      },
+      {
+        "strength": 0.98,
+        "module": "veil:drag"
+      },
+      {
+        "gradient": {
+          "rgb_points": [
+            {
+              "percent": 0.0,
+              "color": 0
+            },
+            {
+              "percent": 0.1,
+              "color": 7752959
+            },
+            {
+              "percent": 1.0,
+              "color": 0
+            }
+          ],
+          "alpha_points": [
+            {
+              "percent": 0.0,
+              "alpha": 1.0
+            },
+            {
+              "percent": 1.0,
+              "alpha": 0.0
+            }
+          ]
+        },
+        "interpolant": "return q.agePercent",
+        "module": "veil:color"
+      },
+      {
+        "vector_field": {
+          "noise": {
+            "rotation_type_3d": "None",
+            "domain_warp_type": "OpenSimplex2",
+            "cellular_distance_function": "EuclideanSq",
+            "cellular_return_type": "Distance",
+            "noise_type": "OpenSimplex2",
+            "octaves": 3,
+            "frequency": 1.05,
+            "seed": 737160488,
+            "fractal_type": "None"
+          },
+          "strength": 1.0
+        },
+        "strength": 0.01,
+        "module": "veil:vector_field"
+      }
+    ],
+    "additive": true,
+    "render_style": "veil:cube"
+  },
+  "max_lifetime": 20,
+  "loop": true,
+  "rate": 1
+}

@@ -2,6 +2,7 @@ package dev.neddslayer.voidbound.entity;
 
 import dev.neddslayer.voidbound.registrar.VoidboundEntityTypes;
 import dev.neddslayer.voidbound.registrar.VoidboundItems;
+import foundry.veil.api.quasar.particle.ParticleEmitter;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
@@ -17,8 +18,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
-public class VoidCatalystEntity extends Entity implements ItemSupplier {
+public class VoidCatalystEntity extends Entity {
     public boolean hasLink;
+    public ParticleEmitter emitter;
 
     public VoidCatalystEntity(EntityType<? extends Entity> entityType, Level level) {
         super(entityType, level);
@@ -62,12 +64,16 @@ public class VoidCatalystEntity extends Entity implements ItemSupplier {
     }
 
     @Override
-    public ItemStack getItem() {
-        return new ItemStack(VoidboundItems.VOID_GEM.get());
+    public boolean isOnFire() {
+        return  false;
     }
 
     @Override
-    public boolean isOnFire() {
-        return  false;
+    public void remove(RemovalReason reason) {
+        super.remove(reason);
+        if (this.emitter != null) {
+            this.emitter.remove();
+            this.emitter = null;
+        }
     }
 }
