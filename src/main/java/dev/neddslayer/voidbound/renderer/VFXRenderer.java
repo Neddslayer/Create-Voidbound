@@ -40,6 +40,8 @@ public class VFXRenderer {
     private static final List<Vertex> sphereList = generateSphere(16, 32, 1f);
     private static final List<Integer> sphereIndicesList = generateSphereIndices(16, 32);
 
+    public static boolean renderingHeart = false;
+
     private VFXRenderer() {}
 
     public static void tickVFX() {

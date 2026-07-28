@@ -6,8 +6,7 @@
         "BottleItemMixin",
         "FluidDrainingBehaviourMixin",
         "FluidNetworkMixin",
-        "HosePulleyBlockEntityMixin",
-        "LevelEntityAccessor"
+        "HosePulleyBlockEntityMixin"
     ],
     "injectors": {
         "defaultRequire": 1
@@ -17,10 +16,11 @@
     },
     "client": [
         "FluidRendererMixin",
-        "GuiGraphicsMixin",
-        "ItemRendererMixin",
         "FluidRenderHelperMixin",
+        "GuiGraphicsMixin",
+        "GuiMixin",
+        "ItemRendererMixin",
         "LevelRendererMixin",
         "LivingEntityRendererMixin"
-  ]
+    ]
 }
