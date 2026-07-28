@@ -1,0 +1,19 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "create:crushed_raw_gold"
+    },
+    {
+      "type": "neoforge:single",
+      "amount": 250,
+      "fluid": "voidbound:distilled_void_essence"
+    }
+  ],
+  "processing_time": 100,
+  "results": [
+    {
+      "id": "voidbound:infused_gold"
+    }
+  ]
+}

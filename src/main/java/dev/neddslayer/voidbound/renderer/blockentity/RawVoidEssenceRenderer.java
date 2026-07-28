@@ -24,6 +24,6 @@ public class RawVoidEssenceRenderer implements BlockEntityRenderer<RawVoidEssenc
     @Override
     public void render(RawVoidEssenceBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
         RenderType renderType = VeilRenderType.get(VoidboundClient.RAW_VOID_ESSENCE);
-        VoidFluidRenderer.render(be, ms, bufferSource, renderType);
+        VoidFluidRenderer.tesselate(be.getLevel(), be.getBlockPos(), bufferSource.getBuffer(renderType), ms, be.getBlockState(), be.getBlockState().getFluidState());
     }
 }

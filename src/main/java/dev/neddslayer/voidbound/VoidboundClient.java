@@ -1,16 +1,18 @@
 package dev.neddslayer.voidbound;
 
 import dev.neddslayer.voidbound.ponder.VoidboundPonderPlugin;
+import dev.neddslayer.voidbound.registrar.VoidboundItems;
 import dev.neddslayer.voidbound.registrar.VoidboundPartialModels;
 import dev.neddslayer.voidbound.registrar.VoidboundParticles;
 import dev.neddslayer.voidbound.renderer.VFXRenderer;
 import foundry.veil.api.client.render.VeilRenderSystem;
 import foundry.veil.api.client.render.framebuffer.AdvancedFbo;
 import foundry.veil.api.client.render.framebuffer.FramebufferManager;
+import foundry.veil.api.client.render.post.PostPipeline;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.Resource;
+import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -55,11 +57,12 @@ public class VoidboundClient {
     static void onClientSetup(FMLClientSetupEvent event) {
         PonderIndex.addPlugin(new VoidboundPonderPlugin());
 
-
     }
 
     @SubscribeEvent
     static void renderLevelStage(RenderLevelStageEvent event) {
+        float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
+
         if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_ENTITIES) {
             FramebufferManager framebufferManager = VeilRenderSystem.renderer().getFramebufferManager();
             AdvancedFbo fbo = framebufferManager.getFramebuffer(VOID_FLUID_DEPTH_FBO);
@@ -70,6 +73,12 @@ public class VoidboundClient {
             AdvancedFbo fbo = framebufferManager.getFramebuffer(PURIFICATION_CRYSTAL_FBO);
             AdvancedFbo main = AdvancedFbo.getMainFramebuffer();
             main.resolveToAdvancedFbo(fbo, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+        } else if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_LEVEL) {
+            if (Minecraft.getInstance().player.getActiveEffects().stream().anyMatch(p -> p.is(VoidboundItems.ASTRAL_PROJECTION.getDelegate()))) {
+                PostPipeline astralPipeline = VeilRenderSystem.renderer().getPostProcessingManager().getPipeline(Voidbound.path("astral"));
+                astralPipeline.getUniformSafe("TimeToDisappear").setFloat(Mth.clamp(1 - (Minecraft.getInstance().player.getEffect(VoidboundItems.ASTRAL_PROJECTION.getDelegate()).getDuration() - partialTick) / 60f, 0, 1));
+                VeilRenderSystem.renderer().getPostProcessingManager().runPipeline(astralPipeline);
+            }
         }
     }
 

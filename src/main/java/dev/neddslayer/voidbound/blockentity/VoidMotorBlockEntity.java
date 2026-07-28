@@ -1,29 +1,21 @@
 package dev.neddslayer.voidbound.blockentity;
 
-import com.simibubi.create.AllBlockEntityTypes;
-import com.simibubi.create.content.fluids.FluidNetwork;
-import com.simibubi.create.content.fluids.FluidPropagator;
-import com.simibubi.create.content.fluids.FluidTransportBehaviour;
-import com.simibubi.create.content.fluids.PipeConnection;
-import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlock;
 import com.simibubi.create.content.kinetics.base.GeneratingKineticBlockEntity;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
-import dev.neddslayer.voidbound.Voidbound;
 import dev.neddslayer.voidbound.block.VoidMotorBlock;
+import dev.neddslayer.voidbound.datagen.VoidboundAdvancementProvider;
 import dev.neddslayer.voidbound.registrar.VoidboundBlockEntityTypes;
 import dev.neddslayer.voidbound.registrar.VoidboundFluids;
-import net.createmod.catnip.data.Couple;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.PipeBlock;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-
-import static net.minecraft.world.level.block.DirectionalBlock.FACING;
 
 public class VoidMotorBlockEntity extends GeneratingKineticBlockEntity {
     private final SmartFluidTank internalTank;
@@ -50,18 +42,25 @@ public class VoidMotorBlockEntity extends GeneratingKineticBlockEntity {
     @Override
     public void tick() {
         super.tick();
-        internalTank.drain(32, IFluidHandler.FluidAction.EXECUTE);
+        internalTank.drain(50, IFluidHandler.FluidAction.EXECUTE);
         updateGeneratedRotation();
     }
 
     @Override
-    public float getGeneratedSpeed() {
-        Direction direction = getBlockState().getValue(FACING);
-        FluidTransportBehaviour pipe = FluidPropagator.getPipe(level, getBlockPos().relative(direction.getOpposite()));
-        if (pipe != null && pipe.getConnection(direction) != null && pipe.getFlow(direction) != null && pipe.getFlow(direction).fluid.getFluidType() == VoidboundFluids.DISTILLED_VOID_ESSENCE.getType()) {
-            Couple<Float> pressure = pipe.getConnection(direction).getPressure();
-            if (pressure.getSecond() >= 32) return pressure.getSecond();
+    public void lazyTick() {
+        super.lazyTick();
+        if (internalTank.getFluidAmount() > 0 && !this.level.isClientSide) {
+            AABB area = AABB.ofSize(getBlockPos().getCenter(), 10, 10, 10);
+            for (ServerPlayer player : ((ServerLevel) level).players()) {
+                if (area.contains(player.getX(), player.getY(), player.getZ()) && TargetingConditions.forNonCombat().test(null, player)) {
+                    VoidboundAdvancementProvider.ADVANCEMENT_TRIGGERS.get("power_void_motor").trigger(player);
+                }
+            }
         }
-        return internalTank.getFluidAmount() > 0 ? 32 : 0;
+    }
+
+    @Override
+    public float getGeneratedSpeed() {
+        return internalTank.getFluidAmount() > 0 ? 128 : 0;
     }
 }

@@ -2,13 +2,13 @@ package dev.neddslayer.voidbound.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import dev.neddslayer.voidbound.Config;
 import dev.neddslayer.voidbound.Voidbound;
 import dev.neddslayer.voidbound.VoidboundClient;
 import dev.neddslayer.voidbound.registrar.VoidboundParticles;
 import dev.neddslayer.voidbound.registrar.VoidboundSounds;
+import foundry.veil.api.client.render.VeilRenderSystem;
 import foundry.veil.api.client.render.rendertype.VeilRenderType;
-import net.createmod.catnip.data.Couple;
-import net.createmod.catnip.data.Pair;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -18,7 +18,6 @@ import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
@@ -126,6 +125,8 @@ public class VFXRenderer {
             float x = (instance.ticks + partialTicks) / 80f;
             float radius = (float) easeInOutQuint(x) * 6;
             float innerRadius = -24 * x *x + 24 * x;
+
+            VeilRenderSystem.renderer().getShaderManager().getShader(VoidboundClient.VOID_SPHERE).getUniformSafe("bloom").setFloat((float) Config.BLOOM.getAsDouble());
 
             VertexConsumer consumer = buffer.getBuffer(VeilRenderType.get(VoidboundClient.VOID_SPHERE));
 

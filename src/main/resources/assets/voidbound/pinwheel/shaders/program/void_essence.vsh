@@ -3,7 +3,7 @@
 #include veil:light
 #include veil:fog
 
-#veil:buffer veil:camera VeilCameraMatrices
+#veil:buffer veil:camera VeilCamera
 
 layout(location = 0) in vec3 Position;
 layout(location = 1) in vec4 Color;
@@ -19,6 +19,7 @@ uniform mat4 ModelViewMat;
 uniform mat4 ProjMat;
 uniform vec3 ChunkOffset;
 uniform int FogShape;
+uniform float VeilRenderTime;
 
 out float vertexDistance;
 out vec3 vertexPos;
@@ -26,7 +27,7 @@ out vec4 vertexColor;
 out vec2 texCoord0;
 
 void main() {
-    vertexPos = ((VeilCameraMatrices.IViewMat * ModelViewMat) * vec4(Position, 1.0)).xyz + VeilCameraMatrices.CameraPosition - VeilCameraMatrices.CameraBobOffset;
+    vertexPos = ((VeilCamera.IViewMat * ModelViewMat) * vec4(Position, 1.0)).xyz + VeilCamera.CameraPosition - VeilCamera.CameraBobOffset;
     gl_Position = ProjMat * ModelViewMat * vec4(Position, 1.0);
 
     vertexDistance = fog_distance(ModelViewMat, Position, FogShape);

@@ -23,6 +23,6 @@ public class DistilledVoidEssenceRenderer implements BlockEntityRenderer<Distill
     @Override
     public void render(DistilledVoidEssenceBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
         RenderType renderType = VeilRenderType.get(VoidboundClient.DISTILLED_VOID_ESSENCE);
-        VoidFluidRenderer.render(be, ms, bufferSource, renderType);
+        VoidFluidRenderer.tesselate(be.getLevel(), be.getBlockPos(), bufferSource.getBuffer(renderType), ms, be.getBlockState(), be.getBlockState().getFluidState());
     }
 }

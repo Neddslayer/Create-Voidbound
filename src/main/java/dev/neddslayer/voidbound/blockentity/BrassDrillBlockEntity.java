@@ -3,12 +3,9 @@ package dev.neddslayer.voidbound.blockentity;
 import com.simibubi.create.content.kinetics.base.BlockBreakingKineticBlockEntity;
 import dev.neddslayer.voidbound.datagen.VoidboundAdvancementProvider;
 import dev.neddslayer.voidbound.registrar.VoidboundBlocks;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.ParticleEngine;
-import net.minecraft.client.particle.TerrainParticle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -48,13 +45,9 @@ public class BrassDrillBlockEntity extends BlockBreakingKineticBlockEntity {
 
         if (level.isClientSide()) {
             // spawn breaking particles
-            ParticleEngine engine = Minecraft.getInstance().particleEngine;
             if (!level.getBlockState(breakingPos).isEmpty()) {
                 for (int i = 0; i < Math.abs(getSpeed()) / 16; i++) {
-                    TerrainParticle particle = new TerrainParticle((ClientLevel) level,
-                            getBlockPos().getX() + 0.5, getBlockPos().getY() + 0.01, getBlockPos().getZ() + 0.5,
-                            0,0,0, level.getBlockState(breakingPos), breakingPos);
-                    engine.add(particle);
+                    level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, level.getBlockState(breakingPos)), getBlockPos().getX() + 0.5, getBlockPos().getY() + 0.01, getBlockPos().getZ() + 0.5, 0, 0, 0);
                 }
                 if (bedrockDestroyProgress > 0) {
                     for (int i = 0; i < 5 + Math.floor(bedrockDestroyProgress * 20); i++) {

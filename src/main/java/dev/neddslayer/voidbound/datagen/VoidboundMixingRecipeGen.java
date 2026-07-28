@@ -8,10 +8,7 @@ import dev.neddslayer.voidbound.registrar.VoidboundFluids;
 import dev.neddslayer.voidbound.registrar.VoidboundItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 
 import java.util.concurrent.CompletableFuture;
@@ -48,6 +45,12 @@ public class VoidboundMixingRecipeGen extends MixingRecipeGen {
                     .require(AllItems.POLISHED_ROSE_QUARTZ)
                     .requiresHeat(HeatCondition.HEATED)
                     .output(VoidboundItems.VOID_CATALYST_ITEM)
+                    .averageProcessingDuration()
+            ),
+            INFUSED_GOLD = create("infused_gold", b -> b
+                    .require(VoidboundFluids.DISTILLED_VOID_ESSENCE.get(), 250)
+                    .require(AllItems.CRUSHED_GOLD)
+                    .output(VoidboundItems.INFUSED_GOLD)
                     .averageProcessingDuration()
             );
 

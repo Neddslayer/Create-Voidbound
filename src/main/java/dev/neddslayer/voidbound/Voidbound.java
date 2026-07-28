@@ -6,6 +6,7 @@ import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipModifier;
 import dev.neddslayer.voidbound.blockentity.VoidCatalystAnchorBlockEntity;
 import dev.neddslayer.voidbound.blockentity.VoidMotorBlockEntity;
+import dev.neddslayer.voidbound.item.AstralProjectionMobEffect;
 import dev.neddslayer.voidbound.network.*;
 import dev.neddslayer.voidbound.registrar.*;
 import dev.neddslayer.voidbound.renderer.VFXRenderer;
@@ -15,6 +16,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -22,6 +24,7 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -138,6 +141,28 @@ public class Voidbound {
     public void onEntityDamage(LivingIncomingDamageEvent event) {
         if (event.getSource().is(Voidbound.RAW_VOID_ESSENCE_DAMAGE)) {
             event.getEntity().lastHurtByPlayerTime = event.getEntity().tickCount;
+        }
+
+        if (event.getEntity().hasEffect(VoidboundItems.ASTRAL_PROJECTION.getDelegate()) && event.getEntity().getHealth() <= event.getAmount()) {
+            event.getEntity().removeEffect(VoidboundItems.ASTRAL_PROJECTION.getDelegate());
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public void onRemoveEffect(MobEffectEvent.Remove event) {
+        LivingEntity entity = event.getEntity();
+        if (event.getEffect().is(VoidboundItems.ASTRAL_PROJECTION.getKey())) {
+            AstralProjectionMobEffect.resetEntity(entity);
+        }
+    }
+
+    @SubscribeEvent
+    public void onRemoveEffect(MobEffectEvent.Expired event) {
+        LivingEntity entity = event.getEntity();
+        if (event.getEffectInstance() == null) return;
+        if (event.getEffectInstance().is(VoidboundItems.ASTRAL_PROJECTION.getDelegate())) {
+            AstralProjectionMobEffect.resetEntity(entity);
         }
     }
 

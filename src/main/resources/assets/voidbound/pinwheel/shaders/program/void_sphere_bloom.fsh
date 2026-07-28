@@ -11,5 +11,5 @@ out vec4 fragColor;
 
 void main() {
     vec4 color = vertexColor * ColorModulator;
-    fragColor = color * 2;
+    fragColor = color * bloom;
 }

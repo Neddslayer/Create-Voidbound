@@ -3,18 +3,22 @@ package dev.neddslayer.voidbound.blockentity;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import dev.neddslayer.voidbound.Voidbound;
+import dev.neddslayer.voidbound.datagen.VoidboundAdvancementProvider;
 import dev.neddslayer.voidbound.registrar.VoidboundFluids;
 import dev.neddslayer.voidbound.registrar.VoidboundParticles;
 import dev.neddslayer.voidbound.registrar.VoidboundSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
@@ -84,6 +88,15 @@ public class RawVoidEssenceBlockEntity extends SmartBlockEntity {
 
             // update block and start purification for others
             level.setBlockAndUpdate(pos, newState);
+
+            if (!level.isClientSide) {
+                AABB area = AABB.ofSize(getBlockPos().getCenter(), 10, 10, 10);
+                for (ServerPlayer player : ((ServerLevel) level).players()) {
+                    if (area.contains(player.getX(), player.getY(), player.getZ()) && TargetingConditions.forNonCombat().test(null, player)) {
+                        VoidboundAdvancementProvider.ADVANCEMENT_TRIGGERS.get("essence_distill").trigger(player);
+                    }
+                }
+            }
 
             tryPurifyNeighbor(pos.north());
             tryPurifyNeighbor(pos.south());

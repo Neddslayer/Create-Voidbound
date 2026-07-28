@@ -63,7 +63,6 @@ public class VoidboundAdvancementProvider extends AdvancementProvider {
         advancementTriggerable(VoidboundBlocks.VOID_MOTOR.asItem(), "power_void_motor", AdvancementType.TASK, true, false, false, "essence_distill");
         advancementTriggerable(AllBlocks.ENCASED_FAN.asItem(), "damage_via_raw_essence", AdvancementType.TASK, true, false, false, "drill_bedrock");
         advancementTriggerable(VoidboundBlocks.VOID_CATALYST_ANCHOR.asItem(), "destroy_anchor", AdvancementType.TASK, true, false, false, "essence_distill");
-        advancementTriggerable(VoidboundBlocks.DRILLED_BEDROCK.asItem(), "drilled_bedrock_hoops", AdvancementType.CHALLENGE, true, true, true, "drill_bedrock");
 
         for (String name : ADVANCEMENT_TRIGGERS.keySet()) {
             Registry.register(BuiltInRegistries.TRIGGER_TYPES, name, ADVANCEMENT_TRIGGERS.get(name));
@@ -77,7 +76,6 @@ public class VoidboundAdvancementProvider extends AdvancementProvider {
         addAdvancement("power_void_motor", "Void Harnesser", "Use Distilled Void Essence to power a Void Motor", consumer);
         addAdvancement("destroy_anchor", "Oops!", "Destroy a Void Catalyst Anchor with itself", consumer);
         addAdvancement("damage_via_raw_essence", "owie", "Use an Encased Fan to kill a mob", consumer);
-        addAdvancement("drilled_bedrock_hoops", "Straight Hoops", "Fall into the hole of a block of Drilled Bedrock", consumer);
     }
 
     private static void addAdvancement(String name, String title, String description, BiConsumer<String, String> consumer) {

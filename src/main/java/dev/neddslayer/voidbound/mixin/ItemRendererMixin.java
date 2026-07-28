@@ -19,7 +19,7 @@ import java.util.List;
 public class ItemRendererMixin {
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/resources/model/BakedModel;getRenderTypes(Lnet/minecraft/world/item/ItemStack;Z)Ljava/util/List;"))
     private List<RenderType> customRenderType(BakedModel instance, ItemStack itemStack, boolean b) {
-        if (itemStack.getItem() == VoidboundItems.PURIFICATION_CRYSTAL.get()) {
+        if (itemStack.getItem() == VoidboundItems.PURIFICATION_CRYSTAL.get() || itemStack.getItem() == VoidboundItems.INFUSED_GOLD.get()) {
             return List.of(VeilRenderType.get(VoidboundClient.PURIFICATION_CRYSTAL));
         } else if (itemStack.getItem() == VoidboundFluids.distilledVoidEssenceBucket()) {
             return List.of(VeilRenderType.get(VoidboundClient.DISTILLED_VOID_ESSENCE_BUCKET));

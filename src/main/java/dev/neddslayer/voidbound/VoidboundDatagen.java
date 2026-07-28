@@ -99,6 +99,19 @@ public class VoidboundDatagen {
                 "item.voidbound.purification_crystal.tooltip.behaviour1",
                 "_Purifies_ Raw Void Essence, turning it into _Distilled Void Essence._"
         );
+
+        consumer.accept(
+                "item.voidbound.infused_gold.tooltip.summary",
+                ""
+        );
+        consumer.accept(
+                "item.voidbound.infused_gold.tooltip.condition1",
+                "When consumed"
+        );
+        consumer.accept(
+                "item.voidbound.infused_gold.tooltip.behaviour1",
+                "Provides an _out of body experience._"
+        );
     }
 
     private static void providePonderLang(BiConsumer<String, String> consumer) {

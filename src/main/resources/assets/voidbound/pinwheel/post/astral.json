@@ -1,0 +1,9 @@
+{
+    "stages": [
+        {
+            "type": "veil:blit",
+            "in": "minecraft:main",
+            "shader": "voidbound:post/astral"
+        }
+    ]
+}

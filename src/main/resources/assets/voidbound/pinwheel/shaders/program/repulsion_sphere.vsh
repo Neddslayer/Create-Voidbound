@@ -15,7 +15,7 @@ out vec2 texCoord;
 
 uniform mat4 ModelViewMat;
 uniform mat4 ProjMat;
-uniform mat4 NormalMat;
+uniform mat3 NormalMat;
 uniform vec3 ChunkOffset;
 uniform int FogShape;
 
@@ -32,5 +32,5 @@ void main() {
     vertexDistance = fog_distance(ModelViewMat, Position, FogShape);
     vertexColor = Color;
     texCoord0 = UV0;
-    outNormal = (NormalMat * vec4(Normal, 1.0)).xyz;
+    outNormal = NormalMat * Normal;
 }
