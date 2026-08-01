@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import com.simibubi.create.content.fluids.FluidNetwork;
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyFluidHandler;
 import com.simibubi.create.foundation.fluid.FluidHelper;
+import dev.neddslayer.voidbound.config.Config;
 import dev.neddslayer.voidbound.registrar.VoidboundFluids;
 import net.minecraft.util.Mth;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -24,7 +25,7 @@ public class FluidNetworkMixin {
 
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/foundation/fluid/FluidHelper;copyStackWithAmount(Lnet/neoforged/neoforge/fluids/FluidStack;I)Lnet/neoforged/neoforge/fluids/FluidStack;"))
     private FluidStack slowDrainVoidFluid(FluidStack fs, int amount) {
-        amount = veilTest$extractingVoidFluidFromHose ? Mth.ceil(amount * 0.1) : amount;
+        amount = veilTest$extractingVoidFluidFromHose ? Mth.ceil(amount * Config.EXTRACT_RATE.getAsDouble()) : amount;
         if (veilTest$extractingVoidFluidFromHose) veilTest$extractingVoidFluidFromHose = false;
         return FluidHelper.copyStackWithAmount(fs, amount);
     }

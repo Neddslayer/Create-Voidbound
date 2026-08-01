@@ -2,7 +2,7 @@ package dev.neddslayer.voidbound.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import dev.neddslayer.voidbound.Config;
+import dev.neddslayer.voidbound.config.ClientConfig;
 import dev.neddslayer.voidbound.Voidbound;
 import dev.neddslayer.voidbound.VoidboundClient;
 import dev.neddslayer.voidbound.registrar.VoidboundParticles;
@@ -128,7 +128,7 @@ public class VFXRenderer {
             float radius = (float) easeInOutQuint(x) * 6;
             float innerRadius = -24 * x *x + 24 * x;
 
-            VeilRenderSystem.renderer().getShaderManager().getShader(VoidboundClient.VOID_SPHERE_BLOOM).getUniformSafe("bloom").setFloat((float) Config.BLOOM.getAsDouble());
+            VeilRenderSystem.renderer().getShaderManager().getShader(VoidboundClient.VOID_SPHERE_BLOOM).getUniformSafe("bloom").setFloat((float) ClientConfig.BLOOM.getAsDouble());
 
             VertexConsumer consumer = buffer.getBuffer(VeilRenderType.get(VoidboundClient.VOID_SPHERE));
 

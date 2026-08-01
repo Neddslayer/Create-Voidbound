@@ -19,6 +19,7 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 public class VoidMotorBlockEntity extends GeneratingKineticBlockEntity {
     private final SmartFluidTank internalTank;
+    private int ticksRunning = 0;
 
     public VoidMotorBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -42,14 +43,16 @@ public class VoidMotorBlockEntity extends GeneratingKineticBlockEntity {
     @Override
     public void tick() {
         super.tick();
-        internalTank.drain(50, IFluidHandler.FluidAction.EXECUTE);
+        internalTank.drain(32, IFluidHandler.FluidAction.EXECUTE);
         updateGeneratedRotation();
+        if (getGeneratedSpeed() > 0) ticksRunning++;
+        else ticksRunning = 0;
     }
 
     @Override
     public void lazyTick() {
         super.lazyTick();
-        if (internalTank.getFluidAmount() > 0 && !this.level.isClientSide) {
+        if (internalTank.getFluidAmount() > 0 && ticksRunning > 20 && hasLevel() && !this.level.isClientSide) {
             AABB area = AABB.ofSize(getBlockPos().getCenter(), 10, 10, 10);
             for (ServerPlayer player : ((ServerLevel) level).players()) {
                 if (area.contains(player.getX(), player.getY(), player.getZ()) && TargetingConditions.forNonCombat().test(null, player)) {

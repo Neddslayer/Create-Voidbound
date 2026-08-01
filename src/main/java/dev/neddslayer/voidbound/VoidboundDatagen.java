@@ -3,6 +3,8 @@ package dev.neddslayer.voidbound;
 import com.simibubi.create.api.registry.CreateBuiltInRegistries;
 import com.simibubi.create.foundation.data.TagGen;
 import com.tterrag.registrate.providers.ProviderType;
+import dev.neddslayer.voidbound.config.ClientConfig;
+import dev.neddslayer.voidbound.config.Config;
 import dev.neddslayer.voidbound.datagen.VoidboundAdvancementProvider;
 import dev.neddslayer.voidbound.datagen.VoidboundProcessingRecipeProvider;
 import dev.neddslayer.voidbound.datagen.VoidboundSoundProvider;
@@ -51,6 +53,9 @@ public class VoidboundDatagen {
 
             consumer.accept("death.attack.raw_void_essence", "%s was dissolved");
             consumer.accept("death.attack.raw_void_essence.player", "%s was dissolved whilst fighting %s");
+
+            Config.acceptLang(consumer);
+            ClientConfig.acceptLang(consumer);
         });
     }
 

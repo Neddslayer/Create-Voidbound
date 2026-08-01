@@ -7,6 +7,8 @@ import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipModifier;
 import dev.neddslayer.voidbound.blockentity.VoidCatalystAnchorBlockEntity;
 import dev.neddslayer.voidbound.blockentity.VoidMotorBlockEntity;
+import dev.neddslayer.voidbound.config.ClientConfig;
+import dev.neddslayer.voidbound.config.Config;
 import dev.neddslayer.voidbound.item.AstralProjectionMobEffect;
 import dev.neddslayer.voidbound.network.*;
 import dev.neddslayer.voidbound.registrar.*;
@@ -100,7 +102,8 @@ public class Voidbound {
         NeoForge.EVENT_BUS.register(this);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        modContainer.registerConfig(ModConfig.Type.SERVER, Config.SPEC);
+        modContainer.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
     }
 
     public void onRegisterCapabilities(RegisterCapabilitiesEvent event) {

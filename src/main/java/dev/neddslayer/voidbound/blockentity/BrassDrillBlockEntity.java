@@ -1,6 +1,7 @@
 package dev.neddslayer.voidbound.blockentity;
 
 import com.simibubi.create.content.kinetics.base.BlockBreakingKineticBlockEntity;
+import dev.neddslayer.voidbound.config.Config;
 import dev.neddslayer.voidbound.datagen.VoidboundAdvancementProvider;
 import dev.neddslayer.voidbound.registrar.VoidboundBlocks;
 import net.minecraft.core.BlockPos;
@@ -102,7 +103,7 @@ public class BrassDrillBlockEntity extends BlockBreakingKineticBlockEntity {
         }
         BlockState stateToBreak = level.getBlockState(breakingPos);
         if (stateToBreak.getBlock() == Blocks.BEDROCK && Math.abs(getSpeed()) == 256) {
-            bedrockDestroyProgress += 0.001f;
+            bedrockDestroyProgress += (float) (Config.BEDROCK_DRILL_SPEED.getAsDouble() / 200.0);
             notifyUpdate();
         } else {
             if (bedrockDestroyProgress != 0) notifyUpdate();

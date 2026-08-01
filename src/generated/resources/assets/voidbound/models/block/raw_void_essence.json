@@ -1,5 +1,5 @@
 {
   "textures": {
-    "particle": "voidbound:block/void_fluid"
+    "particle": "voidbound:block/raw_void_fluid"
   }
 }

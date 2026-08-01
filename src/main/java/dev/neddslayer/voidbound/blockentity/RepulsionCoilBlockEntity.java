@@ -1,6 +1,7 @@
 package dev.neddslayer.voidbound.blockentity;
 
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
+import dev.neddslayer.voidbound.config.Config;
 import dev.neddslayer.voidbound.network.RepulsePacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
@@ -68,7 +69,7 @@ public class RepulsionCoilBlockEntity extends KineticBlockEntity {
 
     private void repulse() {
         repulseServerTime = 20;
-        repulseRadius = level.getBestNeighborSignal(getBlockPos()) * 0.5f;
+        if (hasLevel()) repulseRadius = level.getBestNeighborSignal(getBlockPos()) * (float)Config.REPULSION_RADIUS.getAsDouble();
         Vec3i normal = getBlockState().getValue(FACING).getNormal();
         PacketDistributor.sendToPlayersTrackingChunk((ServerLevel) level, level.getChunkAt(getBlockPos()).getPos(), new RepulsePacket(getBlockPos().getCenter().toVector3f().add(normal.getX(), normal.getY(), normal.getZ()), repulseRadius));
     }

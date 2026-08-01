@@ -3,6 +3,7 @@ package dev.neddslayer.voidbound.blockentity;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import dev.neddslayer.voidbound.Voidbound;
+import dev.neddslayer.voidbound.config.Config;
 import dev.neddslayer.voidbound.datagen.VoidboundAdvancementProvider;
 import dev.neddslayer.voidbound.registrar.VoidboundFluids;
 import dev.neddslayer.voidbound.registrar.VoidboundParticles;
@@ -34,7 +35,7 @@ public class RawVoidEssenceBlockEntity extends SmartBlockEntity {
     public RawVoidEssenceBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
 
-        setLazyTickRate(5);
+        setLazyTickRate(Config.PURIFY_SPEED.getAsInt());
     }
 
     @Override

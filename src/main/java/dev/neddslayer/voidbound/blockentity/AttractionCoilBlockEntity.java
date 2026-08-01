@@ -1,12 +1,12 @@
 package dev.neddslayer.voidbound.blockentity;
 
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
+import dev.neddslayer.voidbound.config.Config;
 import dev.neddslayer.voidbound.registrar.VoidboundParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -48,7 +48,7 @@ public class AttractionCoilBlockEntity extends KineticBlockEntity {
 
     @Override
     public void lazyTick() {
-        attractionRadius = level.getBestNeighborSignal(getBlockPos()) * 0.5f;
+        if (hasLevel()) attractionRadius = level.getBestNeighborSignal(getBlockPos()) * (float)Config.ATTRACTION_RADIUS.getAsDouble();
 
     }
 }
