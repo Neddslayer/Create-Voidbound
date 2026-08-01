@@ -14,11 +14,11 @@ public class FluidDrainingBehaviourMixin {
 
     @Inject(method = "getDrainableFluid", at = @At("HEAD"), cancellable = true)
     private void getVoidFluid(BlockPos rootPos, CallbackInfoReturnable<FluidStack> cir) {
-        if (rootPos.getY() < -100) cir.setReturnValue(new FluidStack(VoidboundFluids.RAW_VOID_ESSENCE, 1));
+        if (rootPos.getY() < -72) cir.setReturnValue(new FluidStack(VoidboundFluids.RAW_VOID_ESSENCE, 1));
     }
 
     @Inject(method = "pullNext", at = @At("HEAD"), cancellable = true)
     private void pullVoidFluid(BlockPos root, boolean simulate, CallbackInfoReturnable<Boolean> cir) {
-        if (root.getY() < -100) cir.setReturnValue(true);
+        if (root.getY() < -72) cir.setReturnValue(true);
     }
 }

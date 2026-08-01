@@ -54,7 +54,7 @@ public class Voidbound {
         return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(key));
     }
 
-    public static final FontHelper.Palette VOIDBOUND_CREATE = new FontHelper.Palette(styleFromColor(0xC9974C), styleFromColor(0xE4BDFA));
+    public static final FontHelper.Palette VOIDBOUND_CREATE = new FontHelper.Palette(styleFromColor(0xC9974C), styleFromColor(0xD8B3ED));
 
     private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MODID)
             .defaultCreativeTab((ResourceKey<CreativeModeTab>) null)
@@ -133,7 +133,7 @@ public class Voidbound {
         registrar.playToClient(
                 StopVoidVFXPacket.TYPE,
                 StopVoidVFXPacket.STREAM_CODEC,
-                (VFXPacket, iPayloadContext) -> {VFXRenderer.stopVoidVFX(VFXPacket.index());}
+                (VFXPacket, iPayloadContext) -> VFXRenderer.stopVoidVFX(VFXPacket.index())
         );
     }
 

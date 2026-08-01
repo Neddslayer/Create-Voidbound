@@ -8,14 +8,8 @@
       "item": "minecraft:diamond"
     },
     {
-      "item": "minecraft:diamond"
-    },
-    {
-      "item": "minecraft:diamond"
-    },
-    {
       "type": "neoforge:single",
-      "amount": 1000,
+      "amount": 500,
       "fluid": "voidbound:raw_void_essence"
     }
   ],

@@ -17,25 +17,21 @@ import java.util.concurrent.CompletableFuture;
 public class VoidboundMixingRecipeGen extends MixingRecipeGen {
     GeneratedRecipe
             VOID_GEM = create("void_gem", b -> b
-                    .require(VoidboundFluids.RAW_VOID_ESSENCE.get(), 1000)
-                    .require(Items.DIAMOND)
-                    .require(Items.DIAMOND)
+                    .require(VoidboundFluids.RAW_VOID_ESSENCE.get(), 500)
                     .require(Items.DIAMOND)
                     .require(Items.DIAMOND)
                     .output(VoidboundItems.VOID_GEM)
                     .duration(200)
             ),
             PURIFICATION_CRYSTAL = create("purification_crystal", b -> b
-                    .require(Fluids.WATER, 500)
+                    .require(Fluids.WATER, 250)
                     .require(Items.QUARTZ)
                     .require(Items.QUARTZ)
-                    .require(Items.QUARTZ)
-                    .require(Items.AMETHYST_SHARD)
                     .require(Items.AMETHYST_SHARD)
                     .require(Items.DIAMOND)
                     .requiresHeat(HeatCondition.SUPERHEATED)
                     .output(VoidboundItems.PURIFICATION_CRYSTAL)
-                    .duration(400)
+                    .duration(250)
             ),
             VOID_CATALYST = create("void_catalyst", b -> b
                     .require(VoidboundFluids.DISTILLED_VOID_ESSENCE.get(), 1000)

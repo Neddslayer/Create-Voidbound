@@ -9,12 +9,6 @@
       "item": "minecraft:quartz"
     },
     {
-      "item": "minecraft:quartz"
-    },
-    {
-      "item": "minecraft:amethyst_shard"
-    },
-    {
       "item": "minecraft:amethyst_shard"
     },
     {
@@ -22,11 +16,11 @@
     },
     {
       "type": "neoforge:single",
-      "amount": 500,
+      "amount": 250,
       "fluid": "minecraft:water"
     }
   ],
-  "processing_time": 400,
+  "processing_time": 250,
   "results": [
     {
       "id": "voidbound:purification_crystal"
