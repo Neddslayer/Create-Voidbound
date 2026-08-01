@@ -5,8 +5,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.FluidEntry;
-import com.tterrag.registrate.util.entry.ItemEntry;
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.neddslayer.voidbound.Voidbound;
 import dev.neddslayer.voidbound.block.DistilledVoidEssenceBlock;
 import dev.neddslayer.voidbound.block.RawVoidEssenceBlock;
@@ -35,14 +33,12 @@ import org.joml.Vector3f;
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
-import static dev.neddslayer.voidbound.Voidbound.MODID;
-
 
 public class VoidboundFluids {
     private static final CreateRegistrate REGISTRATE = Voidbound.registrate();
 
     public static final FluidEntry<BaseFlowingFluid.Flowing> DISTILLED_VOID_ESSENCE = REGISTRATE
-            .fluid("distilled_void_essence", ResourceLocation.fromNamespaceAndPath(MODID, "block/void_fluid"), ResourceLocation.fromNamespaceAndPath(MODID, "block/void_fluid"),
+            .fluid("distilled_void_essence", Voidbound.path("block/distilled_void_fluid"), Voidbound.path("block/distilled_void_fluid"),
                     (p, s, f) -> new NoRenderFluidType(p, s, f) {
                         @Override
                         protected int getTintColor(FluidStack stack) {
@@ -79,7 +75,7 @@ public class VoidboundFluids {
             .register();
 
     public static final FluidEntry<BaseFlowingFluid.Flowing> RAW_VOID_ESSENCE = REGISTRATE
-            .fluid("raw_void_essence", ResourceLocation.fromNamespaceAndPath(MODID, "block/void_fluid"), ResourceLocation.fromNamespaceAndPath(MODID, "block/void_fluid"),
+            .fluid("raw_void_essence", Voidbound.path("block/raw_void_fluid"), Voidbound.path("block/raw_void_fluid"),
                     (p, s, f) -> new NoRenderFluidType(p, s, f) {
                         @Override
                         protected int getTintColor(FluidStack stack) {
