@@ -132,10 +132,14 @@ configurations {
 
 dependencies {
     // Veil dependency
-    implementation("foundry.veil:veil-neoforge-${project.minecraft_version}:${project.veil_version}") {
+    jarJar( implementation("foundry.veil:veil-neoforge-${project.minecraft_version}:${project.veil_version}") {
         exclude group: "maven.modrinth"
         exclude group: "me.fallenbreath"
-    }
+        version {
+            prefer '4.4.1'
+        }
+    })
+
     implementation("foundry.imguimc:imguimc-neoforge-${project.minecraft_version}:${project.imguimc_version}")
 
     // Create dependency

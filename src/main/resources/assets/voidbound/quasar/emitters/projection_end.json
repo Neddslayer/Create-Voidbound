@@ -1,0 +1,98 @@
+{
+  "count": 60,
+  "emitter_settings": {
+    "shape": {
+      "shape": "veil:cube",
+      "dimensions": [
+        1.0,
+        2.0,
+        1.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "from_surface": false
+    },
+    "particle_settings": {
+      "random_size": true,
+      "random_lifetime": true,
+      "random_initial_direction": true,
+      "particle_lifetime": 10,
+      "particle_lifetime_variation": 10.0,
+      "particle_speed": 0.5,
+      "base_particle_size": 0.1,
+      "particle_size_variation": 0.15
+    }
+  },
+  "particle_data": {
+    "modules": [
+      {
+        "strength": 0.98,
+        "module": "veil:drag"
+      },
+      {
+        "gradient": {
+          "rgb_points": [
+            {
+              "percent": 0.0,
+              "color": 0
+            },
+            {
+              "percent": 0.25,
+              "color": 7235839
+            },
+            {
+              "percent": 1.0,
+              "color": 0
+            }
+          ],
+          "alpha_points": [
+            {
+              "percent": 0.0,
+              "alpha": 1.0
+            }
+          ]
+        },
+        "interpolant": "return q.agePercent",
+        "module": "veil:color"
+      },
+      {
+        "size": "return ((1.0 - q.agePercent) * 0.1)",
+        "module": "veil:size"
+      },
+      {
+        "local_position": true,
+        "range": 10.0,
+        "strength": 0.05,
+        "vortex_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "vortex_center": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "module": "veil:vortex"
+      },
+      {
+        "strength": 0.05,
+        "strengthByDistance": false,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "range": 20.0,
+        "module": "veil:point_attractor"
+      }
+    ],
+    "additive": true,
+    "render_style": "veil:cube"
+  },
+  "max_lifetime": 2,
+  "rate": 1
+}

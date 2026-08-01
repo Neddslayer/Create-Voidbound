@@ -1,5 +1,6 @@
 package dev.neddslayer.voidbound;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
@@ -10,6 +11,8 @@ import dev.neddslayer.voidbound.item.AstralProjectionMobEffect;
 import dev.neddslayer.voidbound.network.*;
 import dev.neddslayer.voidbound.registrar.*;
 import dev.neddslayer.voidbound.renderer.VFXRenderer;
+import foundry.veil.api.client.render.VeilRenderSystem;
+import foundry.veil.api.quasar.particle.ParticleEmitter;
 import net.createmod.catnip.lang.FontHelper;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -29,6 +32,7 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.joml.Vector3d;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -134,6 +138,17 @@ public class Voidbound {
                 StopVoidVFXPacket.TYPE,
                 StopVoidVFXPacket.STREAM_CODEC,
                 (VFXPacket, iPayloadContext) -> VFXRenderer.stopVoidVFX(VFXPacket.index())
+        );
+
+        registrar.playToClient(
+                SpawnQuasarParticlePacket.TYPE,
+                SpawnQuasarParticlePacket.STREAM_CODEC,
+                (spawnQuasarParticlePacket, iPayloadContext) -> RenderSystem.recordRenderCall(() -> {
+                    ParticleEmitter emitter = VeilRenderSystem.renderer().getParticleManager().createEmitter(spawnQuasarParticlePacket.location());
+                    if (emitter == null) return;
+                    emitter.setPosition(spawnQuasarParticlePacket.position().get(new Vector3d()));
+                    VeilRenderSystem.renderer().getParticleManager().addParticleSystem(emitter);
+                })
         );
     }
 

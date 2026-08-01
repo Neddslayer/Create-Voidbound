@@ -1,6 +1,8 @@
 package dev.neddslayer.voidbound.item;
 
+import dev.neddslayer.voidbound.Voidbound;
 import dev.neddslayer.voidbound.entity.LivingEntityProjectionEntity;
+import dev.neddslayer.voidbound.network.SpawnQuasarParticlePacket;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -11,6 +13,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.RelativeMovement;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,6 +59,9 @@ public class AstralProjectionMobEffect extends MobEffect {
     public static void resetEntity(LivingEntity livingEntity) {
         infos.computeIfPresent(livingEntity.getUUID(), (u, i) -> {
             if (livingEntity.level().dimension().equals(i.originalDimension)) {
+                if (!livingEntity.level().isClientSide) {
+                    PacketDistributor.sendToPlayersTrackingEntityAndSelf(livingEntity, new SpawnQuasarParticlePacket(livingEntity.getPosition(0).add(0, 1, 0).toVector3f(), Voidbound.path("projection_end")));
+                }
                 if (livingEntity instanceof ServerPlayer player) {
                     player.connection.teleport(i.position.x, i.position.y, i.position.z, i.originalYRot, i.originalXRot, RelativeMovement.ROTATION);
                 } else {
